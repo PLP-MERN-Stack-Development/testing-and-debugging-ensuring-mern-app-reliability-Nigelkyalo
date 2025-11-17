@@ -1,0 +1,49 @@
+{
+  "name": "testing-and-debugging-mern-app-reliability",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Week 6 assignment – comprehensive testing and debugging for a MERN stack app",
+  "scripts": {
+    "install-all": "npm run install:client && npm run install:server",
+    "install:client": "npm install --prefix client",
+    "install:server": "npm install --prefix server",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "start": "node server/src/server.js",
+    "test": "jest --runInBand",
+    "test:unit": "jest --runInBand --selectProjects client server --testPathPattern=/unit/",
+    "test:integration": "jest --runInBand --selectProjects server --testPathPattern=/integration/",
+    "test:e2e": "playwright test",
+    "coverage": "jest --coverage",
+    "lint": "eslint .",
+    "setup-test-db": "node server/scripts/setupTestDb.js"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "@playwright/test": "^1.44.1",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.3.0",
+    "@testing-library/user-event": "^14.5.2",
+    "babel-jest": "^29.7.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.4",
+    "node-mocks-http": "^1.11.0",
+    "supertest": "^6.3.4"
+  }
+}
+
